@@ -50,6 +50,9 @@
             this.btnBinaryImage = new System.Windows.Forms.Button();
             this.btnFillHoles = new System.Windows.Forms.Button();
             this.btnFindContours = new System.Windows.Forms.Button();
+            this.findCoins = new System.Windows.Forms.Button();
+            this.debugTextBox = new System.Windows.Forms.GroupBox();
+            this.textBoxDebug = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.baseImageBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.histogramBox)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
@@ -60,6 +63,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.binaryImageBox)).BeginInit();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.contoursImageBox)).BeginInit();
+            this.debugTextBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnDispHistogram
@@ -106,6 +110,7 @@
             this.flowLayoutPanel1.Controls.Add(this.groupBox3);
             this.flowLayoutPanel1.Controls.Add(this.groupBox4);
             this.flowLayoutPanel1.Controls.Add(this.groupBox5);
+            this.flowLayoutPanel1.Controls.Add(this.debugTextBox);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 42);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(1114, 470);
@@ -303,11 +308,45 @@
             this.btnFindContours.UseVisualStyleBackColor = true;
             this.btnFindContours.Click += new System.EventHandler(this.btnFindContours_Click);
             // 
+            // findCoins
+            // 
+            this.findCoins.Location = new System.Drawing.Point(537, 13);
+            this.findCoins.Name = "findCoins";
+            this.findCoins.Size = new System.Drawing.Size(75, 23);
+            this.findCoins.TabIndex = 6;
+            this.findCoins.Text = "Find Coins";
+            this.findCoins.UseVisualStyleBackColor = true;
+            this.findCoins.Click += new System.EventHandler(this.findCoins_Click);
+            // 
+            // debugTextBox
+            // 
+            this.debugTextBox.Controls.Add(this.textBoxDebug);
+            this.debugTextBox.Location = new System.Drawing.Point(727, 229);
+            this.debugTextBox.Name = "debugTextBox";
+            this.debugTextBox.Size = new System.Drawing.Size(356, 220);
+            this.debugTextBox.TabIndex = 9;
+            this.debugTextBox.TabStop = false;
+            this.debugTextBox.Text = "Debug";
+            this.debugTextBox.Enter += new System.EventHandler(this.groupBox6_Enter);
+            // 
+            // textBoxDebug
+            // 
+            this.textBoxDebug.AcceptsReturn = true;
+            this.textBoxDebug.Dock = System.Windows.Forms.DockStyle.Top;
+            this.textBoxDebug.Location = new System.Drawing.Point(3, 16);
+            this.textBoxDebug.Multiline = true;
+            this.textBoxDebug.Name = "textBoxDebug";
+            this.textBoxDebug.ReadOnly = true;
+            this.textBoxDebug.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxDebug.Size = new System.Drawing.Size(350, 200);
+            this.textBoxDebug.TabIndex = 3;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1138, 524);
+            this.Controls.Add(this.findCoins);
             this.Controls.Add(this.btnFindContours);
             this.Controls.Add(this.btnFillHoles);
             this.Controls.Add(this.btnApplyAll);
@@ -328,6 +367,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.binaryImageBox)).EndInit();
             this.groupBox5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.contoursImageBox)).EndInit();
+            this.debugTextBox.ResumeLayout(false);
+            this.debugTextBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -359,6 +400,9 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private Emgu.CV.UI.ImageBox contoursImageBox;
         private System.Windows.Forms.Button btnFindContours;
+        private System.Windows.Forms.Button findCoins;
+        private System.Windows.Forms.GroupBox debugTextBox;
+        private System.Windows.Forms.TextBox textBoxDebug;
     }
 }
 

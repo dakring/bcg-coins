@@ -15,8 +15,10 @@ using Emgu.CV.UI;
 using Emgu.CV.Util;
 using MetadataExtractor;
 
-namespace bcg_coins {
-    public partial class MainWindow : Form {
+namespace bcg_coins
+{
+    public partial class MainWindow : Form
+    {
 
         #region member variables
         Image<Bgr, byte> _baseImage;
@@ -24,12 +26,17 @@ namespace bcg_coins {
         Image<Gray, byte> _binaryImage;
         Image<Bgr, byte> _contourImage;
         Image<Bgr, byte> _roiImage;
+        List<Image<Bgr, byte>> _roiImageList;
+        Mat[] _coinReferenceList;
+        int[] _coinValueList;
+        List<ImageBox> _currentCoinImageBoxes;
         #endregion
 
         public MainWindow() {
             InitializeComponent();
 
             histogramBox.FunctionalMode = Emgu.CV.UI.HistogramBox.FunctionalModeOption.Minimum;
+            LoadAllReferences();
         }
 
 
@@ -42,18 +49,9 @@ namespace bcg_coins {
             histogramBox.ClearHistogram();
             _grayImage = _baseImage.Convert<Gray, byte>();
 
-            /*DenseHistogram intensityHistogram = new DenseHistogram(256, new RangeF(0, 255));
-            intensityHistogram.Calculate(new Image<Gray, byte>[] { _grayImage }, false, null);
-
-            Mat histData = new Mat();
-            intensityHistogram.CopyTo(histData);
-
-            histogramBox.GenerateHistogram("Intensity Histogram", Color.Blue, histData, 256, new float[] { 0, 256 });*/
 
             histogramBox.GenerateHistograms(_grayImage, 256);
-
             histogramBox.Refresh();
-
         }
 
         private void btnApplyAll_Click(object sender, EventArgs e) {
@@ -81,13 +79,13 @@ namespace bcg_coins {
                 btnDispHistogram_Click(sender, e);
             }
 
-
             if (_grayImage != null) {
                 _binaryImage = _grayImage.ThresholdBinary(new Gray(threshold), new Gray(255));
-                CvInvoke.BitwiseNot(_binaryImage, _binaryImage);
+                if (menuSettingsInvertBinary.Checked) {
+                    CvInvoke.BitwiseNot(_binaryImage, _binaryImage);
+                }
                 binaryImageBox.Image = _binaryImage;
             }
-
         }
 
         private void menuOpen_Click(object sender, EventArgs e) {
@@ -104,7 +102,6 @@ namespace bcg_coins {
 
                     baseImageBox.Image = _baseImage;
 
-
                     contoursImageBox.Image = _contourImage;
 
                     IEnumerable<Directory> directories = ImageMetadataReader.ReadMetadata(filePath);
@@ -113,11 +110,7 @@ namespace bcg_coins {
                         foreach (var tag in directory.Tags)
                             textBoxMetadata.Text = textBoxMetadata.Text + $"{directory.Name} - {tag.Name} = {tag.Description}" + Environment.NewLine;
                     }
-
-
-
                 }
-
             }
         }
 
@@ -154,12 +147,118 @@ namespace bcg_coins {
             return;
         }
 
+        private void LoadAllReferences() {
+
+            _coinReferenceList = new Mat[16];
+            _coinValueList = new int[16];
+
+            //Paths to Ground Truths
+            string front_e2 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Polar\\2e_V.tiff";            
+            string back_e2 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Polar\\2e_R.tiff";
+            string front_e1 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Polar\\1e_V.tiff";
+            string back_e1 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Polar\\1e_R.tiff";
+            string front_c50 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Polar\\50c_V.tiff";
+            string back_c50 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Polar\\50c_R.tiff";
+            string front_c20 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Polar\\20c_V.tiff";
+            string back_c20 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Polar\\20c_R.tiff";
+            string front_c10 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Polar\\10c_V.tiff";
+            string back_c10 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Polar\\10c_R.tiff";
+            string front_c5 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Polar\\5c_V.tiff";
+            string back_c5 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Polar\\5c_R.tiff";
+            string front_c2 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Polar\\2c_V.tiff";
+            string back_c2 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Polar\\2c_R.tiff";
+            string front_c1 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Polar\\1c_V.tiff";
+            string back_c1 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Polar\\1c_R.tiff";
+
+            Mat coin_200_front = CvInvoke.Imread(front_e2);
+            _coinReferenceList[0] = (coin_200_front);
+            _coinValueList[0] = (200);
+
+            Mat coin_200_back = CvInvoke.Imread(back_e2);
+            _coinReferenceList[1] = (coin_200_back);
+            _coinValueList[1] = (200);
+
+            Mat coin_100_front = CvInvoke.Imread(front_e1);
+            _coinReferenceList[2] = (coin_100_front);
+            _coinValueList[2] = (100);
+
+            Mat coin_100_back = CvInvoke.Imread(back_e1);
+            _coinReferenceList[3] = (coin_100_back);
+            _coinValueList[3] = (100);
+
+            Mat coin_50_front = CvInvoke.Imread(front_c50);
+            _coinReferenceList[4] = (coin_50_front);
+            _coinValueList[4] = (50);
+
+            Mat coin_50_back = CvInvoke.Imread(back_c50);
+            _coinReferenceList[5] = (coin_50_back);
+            _coinValueList[5] = (50);
+
+            Mat coin_20_front = CvInvoke.Imread(front_c20);
+            _coinReferenceList[6] = (coin_20_front);
+            _coinValueList[6] = (20);
+
+            Mat coin_20_back = CvInvoke.Imread(back_c20);
+            _coinReferenceList[7] = (coin_20_back);
+            _coinValueList[7] = (20);
+
+            Mat coin_10_front = CvInvoke.Imread(front_c10);
+            _coinReferenceList[8] = (coin_10_front);
+            _coinValueList[8] = (10);
+
+            Mat coin_10_back = CvInvoke.Imread(back_c10);
+            _coinReferenceList[9] = (coin_10_back);
+            _coinValueList[9] = (10);
+
+            Mat coin_5_front = CvInvoke.Imread(front_c5);
+            _coinReferenceList[10] = (coin_5_front);
+            _coinValueList[10] = (5);
+
+            Mat coin_5_back = CvInvoke.Imread(back_c5);
+            _coinReferenceList[11] = (coin_5_back);
+            _coinValueList[11] = (5);
+
+            Mat coin_2_front = CvInvoke.Imread(front_c2);
+            _coinReferenceList[12] = (coin_2_front);
+            _coinValueList[12] = (2);
+
+            Mat coin_2_back = CvInvoke.Imread(back_c2);
+            _coinReferenceList[13] = (coin_2_back);
+            _coinValueList[13] = (2);
+
+            Mat coin_1_front = CvInvoke.Imread(front_c1);
+            _coinReferenceList[14] = (coin_1_front);
+            _coinValueList[14] = (1);
+
+            Mat coin_1_back = CvInvoke.Imread(back_c1);
+            _coinReferenceList[15] = (coin_1_back);
+            _coinValueList[15] = (1);
+        }
 
         private Mat ScrollByPixel(Mat toScroll, int iterations = 1) {
-            Mat temp = new Mat();
-            toScroll.CopyTo(temp);
-        https://stackoverflow.com/questions/58107625/opencv-translate-image-wrap-pixels-around-edges-c
-            return toScroll;
+
+            int width = toScroll.Size.Width;
+            int height = toScroll.Size.Height;
+
+            if (iterations >= height) {
+                MessageBox.Show("Cant Scroll that far!\nError in Code :(");
+                return toScroll;
+            }
+
+            Mat output = new Mat(height, width, toScroll.Depth, toScroll.NumberOfChannels);
+            
+            for (int i = 0; i < height; i++) {
+                for (int j = 0; j < width; j++) {
+
+                    if (i <= iterations) {
+                        MatExtension.SetValues(output, iterations - i, j, MatExtension.GetValues(toScroll, height - (i + 1), j));
+                    } else {
+                        MatExtension.SetValues(output, i, j, MatExtension.GetValues(toScroll, i - iterations, j));
+                    }
+                }
+            }
+
+            return output;
         }
 
         #endregion
@@ -167,8 +266,8 @@ namespace bcg_coins {
         private void btnFillHoles_Click(object sender, EventArgs e) {
             if (_binaryImage != null) {
 
-                Mat kernel = CvInvoke.GetStructuringElement(ElementShape.Ellipse, new Size(10,10), new Point(-1,-1));
-                _binaryImage = _binaryImage.MorphologyEx(MorphOp.Close, kernel, new Point(-1,-1), 1, BorderType.Default, new MCvScalar(1.0));
+                Mat kernel = CvInvoke.GetStructuringElement(ElementShape.Ellipse, new Size(10, 10), new Point(-1, -1));
+                _binaryImage = _binaryImage.MorphologyEx(MorphOp.Close, kernel, new Point(-1, -1), 1, BorderType.Default, new MCvScalar(1.0));
 
                 //_binaryImage = _binaryImage.Dilate(10).Erode(10);
                 binaryImageBox.Image = _binaryImage;
@@ -176,7 +275,7 @@ namespace bcg_coins {
         }
 
         private void menuSettingsInvertBinary_Click(object sender, EventArgs e) {
-
+            menuSettingsInvertBinary.Checked = !menuSettingsInvertBinary.Checked;
         }
 
         private void btnFindContours_Click(object sender, EventArgs e) {
@@ -185,18 +284,13 @@ namespace bcg_coins {
                 return;
             }
 
+            _roiImageList = new List<Image<Bgr, byte>>();
+
             //Reference Shape
-            string referenceFile = "D:\\DesktopFolders\\Uni\\WS2020\\Bildbasierte Computergrafik\\Datensatz\\circle.tif";
-            Mat temp = CvInvoke.Imread(referenceFile);
+            string referenceFile = "C:\\Users\\Menta\\Desktop\\BCG\\Dataset_own\\circle.tif";
+            Mat reference = CvInvoke.Imread(referenceFile);
             Mat grayReference = new Mat();
-
-            //DEBUG: Reference 2E Front Log
-            string E200_Front_Log = "D:\\DesktopFolders\\Uni\\WS2020\\Bildbasierte Computergrafik\\Datensatz\\Referenzen\\200_Front_log.tif";
-            Mat E200_Front_Log_Image = CvInvoke.Imread(E200_Front_Log);
-            //TODO Find way to Wrap Image Around, Moving it on Y
-
-
-            CvInvoke.CvtColor(temp, grayReference, ColorConversion.Bgr2Gray);
+            CvInvoke.CvtColor(reference, grayReference, ColorConversion.Bgr2Gray);
             CvInvoke.Threshold(grayReference, grayReference, 100, 255, ThresholdType.Binary);
             //CvInvoke.Imshow("reference", grayReference);
 
@@ -208,10 +302,8 @@ namespace bcg_coins {
             VectorOfVectorOfPoint contours = new VectorOfVectorOfPoint();
 
             VectorOfRect hierarchy = new VectorOfRect();
-            //Mat hierarchy = new Mat();
 
             _contourImage = _baseImage.Copy();
-            
 
             CvInvoke.FindContours(_binaryImage, contours, hierarchy, RetrType.External, ChainApproxMethod.ChainApproxTc89Kcos);
 
@@ -222,12 +314,12 @@ namespace bcg_coins {
 
                 double matchValue = CvInvoke.MatchShapes(contours_reference[0], contours[i], ContoursMatchType.I1);
 
-                if(matchValue < 0.1) {
+                if (matchValue < 0.1) {
 
                     var mask = _baseImage.Copy();
                     _roiImage = _baseImage.Copy();
-                    mask.SetValue(new Bgr(0,0,0));
-                    CvInvoke.DrawContours(mask, contours, i, new MCvScalar(255,255,255), 1);
+                    mask.SetValue(new Bgr(0, 0, 0));
+                    CvInvoke.DrawContours(mask, contours, i, new MCvScalar(255, 255, 255), 1);
                     CvInvoke.FillConvexPoly(mask, contours[i], new MCvScalar(255, 255, 255));
 
                     CvInvoke.BitwiseAnd(_roiImage, mask, _roiImage);
@@ -249,43 +341,103 @@ namespace bcg_coins {
                     ptCenter.X = (int)(moments.M10 / moments.M00);          //Calculate the centroid
                     ptCenter.Y = (int)(moments.M01 / moments.M00);
                     CvInvoke.Circle(_contourImage, ptCenter, 3, new MCvScalar(0, 0, 255), -1);//Draw the centroid
-
-
-                    if (_roiImage.IsROISet) {
-                        _roiImage = _roiImage.Copy();
-
-                        //CvInvoke.PolarToCart(_roiImage, _roiImage, ptCenter, 120);
-                        Mat roiDst = new Mat();
-                        //CvInvoke.LinearPolar(_baseImage, roiDst, ptCenter, (_roiImage.Cols / 2 + _roiImage.Rows / 2) / 2, Inter.Cubic);
-                        CvInvoke.LogPolar(_roiImage, roiDst, new Point(_roiImage.Cols/2, _roiImage.Rows/2), (_roiImage.Cols / 2 + _roiImage.Rows / 2) / 5.4f, Inter.Cubic);
-
-                        Mat result = new Mat();
-                        CvInvoke.MatchTemplate(_roiImage, E200_Front_Log_Image, result, TemplateMatchingType.Sqdiff);
-
-                        float score = MatExtension.GetValue(result, 0, 0);
-                        double threshold = 1.0E+9;
-                        textBoxMetadata.Text = textBoxMetadata.Text + Environment.NewLine + "Score: " + score.ToString() + " - Nummer: " + i;
-
-                        if(score > threshold) {
-                            CvInvoke.PutText(_roiImage, score.ToString(), new Point(roiDst.Cols/2, roiDst.Rows/2), FontFace.HersheySimplex, 0.5f, new MCvScalar(0,255,0), 2);
-                        } else {
-                            CvInvoke.PutText(_roiImage, score.ToString(), new Point(roiDst.Cols / 2, roiDst.Rows / 2), FontFace.HersheySimplex, 0.5f, new MCvScalar(0, 0, 255), 2);
-                        }
-
-                        ImageBox imgb = new ImageBox();
-                        imgb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-                        imgb.MinimumSize = new System.Drawing.Size(200, 200);
-                        imgb.Size = new System.Drawing.Size(35, 20);
-                        imgb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-                        imgb.TabStop = false;
-                        imgb.Image = _roiImage;
-                        flowLayoutPanel1.Controls.Add(imgb);
-                    }
-
+                    _roiImageList.Add(_roiImage);
                 }
             }
 
             contoursImageBox.Image = _contourImage;
+        }
+
+        private void findCoins_Click(object sender, EventArgs e) {
+            //Make sure Contours exist before attempting to find coins
+            if (_roiImageList == null) {
+                MessageBox.Show("No contours!");
+                return; 
+            }
+
+            //Delete possible old instances
+            if (_currentCoinImageBoxes != null) {
+                foreach (ImageBox box in _currentCoinImageBoxes) {
+                    box.Dispose();
+                }
+            }
+            _currentCoinImageBoxes = new List<ImageBox>();
+            
+            foreach (Image<Bgr, byte> roiImg in _roiImageList) {
+                if (roiImg.IsROISet) {
+                    _roiImage = roiImg.Copy();
+
+                    //CvInvoke.PolarToCart(_roiImage, _roiImage, ptCenter, 120);
+                    Mat roiDst = new Mat();
+                    //CvInvoke.LinearPolar(_baseImage, roiDst, ptCenter, (_roiImage.Cols / 2 + _roiImage.Rows / 2) / 2, Inter.Cubic);
+
+                    /*//---------------------------------
+                    //DEBUG: Reference 2E Front Log
+                    string E200_Front_Log = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Polar\\2e_V.tiff";
+                    Mat E200_Front_Log_Image = CvInvoke.Imread(E200_Front_Log);
+                    //TODO Find way to Wrap Image Around, Moving it on Y
+                    */
+
+                    CvInvoke.LogPolar(_roiImage, roiDst, new Point(_roiImage.Cols / 2, _roiImage.Rows / 2), _roiImage.Cols / Math.Log((_roiImage.Cols / 2) * 0.7f), Inter.Cubic);
+                    //(currentCoin.Cols / 2 + currentCoin.Rows / 2) / 4.85f
+                    //currentCoin.Cols / Math.Log((currentCoin.Cols / 2 + currentCoin.Rows / 2))
+
+                  
+                    float score = 0;
+                    float curScore = 0;
+                    int coinIndex = -1;
+                    int stepsize = 10;
+                    for (int i = 0; i < 16; i++) {
+                        for (int j = 0; j < roiDst.Rows / stepsize; j++) {
+
+                            Mat result = new Mat();
+
+                            if (_coinReferenceList[i].Rows < roiDst.Rows || _coinReferenceList[i].Cols < roiDst.Cols) {
+                                CvInvoke.Resize(roiDst, roiDst, _coinReferenceList[i].Size);
+                            }
+                            
+                            CvInvoke.MatchTemplate(roiDst, _coinReferenceList[i], result, TemplateMatchingType.CcorrNormed);
+                            
+                            curScore = MatExtension.GetValue(result, 0, 0);
+                            if (curScore > score) {
+                                score = curScore;
+                                coinIndex = i;
+                            }
+
+                            roiDst = ScrollByPixel(roiDst, stepsize);
+                            //MessageBox.Show("Score No." + i + ": " + score + " - Coin Index: " + coinIndex + " - Value: " + _coinValueList[coinIndex]);
+                            textBoxDebug.Text += "Score No." + i + ": " + curScore + " - Value: " + _coinValueList[coinIndex] + Environment.NewLine;
+                        }
+                    }
+
+                    /*double threshold = 1.0E+9;
+                    textBoxMetadata.Text = textBoxMetadata.Text + Environment.NewLine + "Score: " + score.ToString() + " - Nummer: ";// + i;
+
+                    if (score > threshold) {
+                        CvInvoke.PutText(roiDst, _coinValueList[coinIndex] + "Cent", new Point(roiDst.Cols / 2, roiDst.Rows / 2), FontFace.HersheySimplex, 0.5f, new MCvScalar(0, 255, 0), 2);
+                    } else {
+                        CvInvoke.PutText(roiDst, "no score", new Point(roiDst.Cols / 2, roiDst.Rows / 2), FontFace.HersheySimplex, 0.5f, new MCvScalar(0, 0, 255), 2);
+                    }*/
+
+                    //MessageBox.Show("index: " + coinIndex + " - curScore: " + curScore + " - score: " + score);
+                    CvInvoke.PutText(_roiImage, _coinValueList[coinIndex] + "Cent", new Point(roiDst.Cols / 2, roiDst.Rows / 2), FontFace.HersheySimplex, 0.5f, new MCvScalar(0, 255, 0), 2);
+                    
+                    ImageBox imgb = new ImageBox();
+                    imgb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+                    imgb.MinimumSize = new System.Drawing.Size(200, 200);
+                    imgb.Size = new System.Drawing.Size(35, 20);
+                    imgb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+                    imgb.TabStop = false;
+                    imgb.Image = _roiImage;
+                    flowLayoutPanel1.Controls.Add(imgb);
+                    _currentCoinImageBoxes.Add(imgb);
+                    
+                }
+            }
+        }
+
+        private void groupBox6_Enter(object sender, EventArgs e) {
+
         }
     }
 }

@@ -124,3 +124,32 @@ D:\DesktopFolders\Uni\WS2020\Bildbasierte Computergrafik\Project\bcg-coins\bcg-c
 D:\DesktopFolders\Uni\WS2020\Bildbasierte Computergrafik\Project\bcg-coins\bcg-coins\bin\Debug\vccorlib140.dll
 D:\DesktopFolders\Uni\WS2020\Bildbasierte Computergrafik\Project\bcg-coins\bcg-coins\bin\Debug\vcruntime140.dll
 D:\DesktopFolders\Uni\WS2020\Bildbasierte Computergrafik\Project\bcg-coins\bcg-coins\bin\Debug\vcruntime140_1.dll
+C:\Users\Menta\bcg-coins\bcg-coins\bin\Debug\bcg-coins.exe.config
+C:\Users\Menta\bcg-coins\bcg-coins\bin\Debug\bcg-coins.exe
+C:\Users\Menta\bcg-coins\bcg-coins\bin\Debug\bcg-coins.pdb
+C:\Users\Menta\bcg-coins\bcg-coins\bin\Debug\Emgu.CV.Platform.NetStandard.dll
+C:\Users\Menta\bcg-coins\bcg-coins\bin\Debug\Emgu.CV.Bitmap.dll
+C:\Users\Menta\bcg-coins\bcg-coins\bin\Debug\cvextern.dll
+C:\Users\Menta\bcg-coins\bcg-coins\bin\Debug\opencv_videoio_ffmpeg455_64.dll
+C:\Users\Menta\bcg-coins\bcg-coins\bin\Debug\Emgu.CV.Platform.NetFramework.dll
+C:\Users\Menta\bcg-coins\bcg-coins\bin\Debug\concrt140.dll
+C:\Users\Menta\bcg-coins\bcg-coins\bin\Debug\msvcp140.dll
+C:\Users\Menta\bcg-coins\bcg-coins\bin\Debug\msvcp140_1.dll
+C:\Users\Menta\bcg-coins\bcg-coins\bin\Debug\msvcp140_2.dll
+C:\Users\Menta\bcg-coins\bcg-coins\bin\Debug\msvcp140_atomic_wait.dll
+C:\Users\Menta\bcg-coins\bcg-coins\bin\Debug\msvcp140_codecvt_ids.dll
+C:\Users\Menta\bcg-coins\bcg-coins\bin\Debug\vcruntime140.dll
+C:\Users\Menta\bcg-coins\bcg-coins\bin\Debug\vcruntime140_1.dll
+C:\Users\Menta\bcg-coins\bcg-coins\bin\Debug\MetadataExtractor.dll
+C:\Users\Menta\bcg-coins\bcg-coins\bin\Debug\System.Drawing.Common.dll
+C:\Users\Menta\bcg-coins\bcg-coins\bin\Debug\XmpCore.dll
+C:\Users\Menta\bcg-coins\bcg-coins\obj\Debug\bcg-coins.csproj.AssemblyReference.cache
+C:\Users\Menta\bcg-coins\bcg-coins\obj\Debug\bcg-coins.csproj.SuggestedBindingRedirects.cache
+C:\Users\Menta\bcg-coins\bcg-coins\obj\Debug\bcg_coins.MainWindow.resources
+C:\Users\Menta\bcg-coins\bcg-coins\obj\Debug\bcg_coins.Properties.Resources.resources
+C:\Users\Menta\bcg-coins\bcg-coins\obj\Debug\bcg_coins.Thresholdialog.resources
+C:\Users\Menta\bcg-coins\bcg-coins\obj\Debug\bcg-coins.csproj.GenerateResource.cache
+C:\Users\Menta\bcg-coins\bcg-coins\obj\Debug\bcg-coins.csproj.CoreCompileInputs.cache
+C:\Users\Menta\bcg-coins\bcg-coins\obj\Debug\bcg-coins.csproj.CopyComplete
+C:\Users\Menta\bcg-coins\bcg-coins\obj\Debug\bcg-coins.exe
+C:\Users\Menta\bcg-coins\bcg-coins\obj\Debug\bcg-coins.pdb

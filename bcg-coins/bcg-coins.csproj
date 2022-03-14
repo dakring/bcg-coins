@@ -8,10 +8,11 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>bcg_coins</RootNamespace>
     <AssemblyName>bcg-coins</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>x64</PlatformTarget>
@@ -72,6 +73,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Thresholdialog.resx">
       <DependentUpon>Thresholdialog.cs</DependentUpon>
@@ -91,16 +93,16 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Emgu.CV">
-      <Version>4.5.1.4349</Version>
+      <Version>4.5.5.4823</Version>
     </PackageReference>
     <PackageReference Include="Emgu.CV.runtime.windows">
-      <Version>4.5.1.4349</Version>
+      <Version>4.5.5.4823</Version>
     </PackageReference>
     <PackageReference Include="Emgu.CV.UI">
-      <Version>4.5.1.4349</Version>
+      <Version>4.5.5.4823</Version>
     </PackageReference>
     <PackageReference Include="MetadataExtractor">
-      <Version>2.4.3</Version>
+      <Version>2.7.1</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

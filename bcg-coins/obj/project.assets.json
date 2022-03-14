@@ -1,8 +1,8 @@
 {
   "version": 3,
   "targets": {
-    ".NETFramework,Version=v4.6.1": {
-      "Emgu.CV/4.5.1.4349": {
+    ".NETFramework,Version=v4.8": {
+      "Emgu.CV/4.5.5.4823": {
         "type": "package",
         "dependencies": {
           "System.Drawing.Primitives": "4.3.0",
@@ -16,11 +16,11 @@
           "lib/netstandard2.0/Emgu.CV.Platform.NetStandard.dll": {}
         }
       },
-      "Emgu.CV.Bitmap/4.5.1.4349": {
+      "Emgu.CV.Bitmap/4.5.5.4823": {
         "type": "package",
         "dependencies": {
-          "Emgu.CV": "(4.5.1, 4.5.2)",
-          "System.Drawing.Common": "5.0.0"
+          "Emgu.CV": "4.5.5.4823",
+          "System.Drawing.Common": "6.0.0"
         },
         "compile": {
           "lib/netstandard2.0/Emgu.CV.Bitmap.dll": {}
@@ -29,19 +29,19 @@
           "lib/netstandard2.0/Emgu.CV.Bitmap.dll": {}
         }
       },
-      "Emgu.CV.runtime.windows/4.5.1.4349": {
+      "Emgu.CV.runtime.windows/4.5.5.4823": {
         "type": "package",
         "dependencies": {
-          "Emgu.CV": "(4.5.1, 4.5.2)",
-          "Emgu.runtime.windows.msvc.rt.x64": "[19.28.29336]",
-          "Emgu.runtime.windows.msvc.rt.x86": "[19.28.29336]"
+          "Emgu.CV": "4.5.5.4823",
+          "Emgu.runtime.windows.msvc.rt.x64": "19.29.30138",
+          "Emgu.runtime.windows.msvc.rt.x86": "19.29.30138"
         },
         "runtimeTargets": {
           "runtimes/win-x64/native/cvextern.dll": {
             "assetType": "native",
             "rid": "win-x64"
           },
-          "runtimes/win-x64/native/opencv_videoio_ffmpeg451_64.dll": {
+          "runtimes/win-x64/native/opencv_videoio_ffmpeg455_64.dll": {
             "assetType": "native",
             "rid": "win-x64"
           },
@@ -49,16 +49,16 @@
             "assetType": "native",
             "rid": "win-x86"
           },
-          "runtimes/win-x86/native/opencv_videoio_ffmpeg451.dll": {
+          "runtimes/win-x86/native/opencv_videoio_ffmpeg455.dll": {
             "assetType": "native",
             "rid": "win-x86"
           }
         }
       },
-      "Emgu.CV.UI/4.5.1.4349": {
+      "Emgu.CV.UI/4.5.5.4823": {
         "type": "package",
         "dependencies": {
-          "Emgu.CV.Bitmap": "(4.5.1, 4.5.2)"
+          "Emgu.CV.Bitmap": "4.5.5.4823"
         },
         "frameworkAssemblies": [
           "System.Windows.Forms"
@@ -70,7 +70,7 @@
           "lib/net461/Emgu.CV.Platform.NetFramework.dll": {}
         }
       },
-      "Emgu.runtime.windows.msvc.rt.x64/19.28.29336": {
+      "Emgu.runtime.windows.msvc.rt.x64/19.29.30138": {
         "type": "package",
         "runtimeTargets": {
           "runtimes/win-x64/native/concrt140.dll": {
@@ -97,10 +97,6 @@
             "assetType": "native",
             "rid": "win-x64"
           },
-          "runtimes/win-x64/native/vccorlib140.dll": {
-            "assetType": "native",
-            "rid": "win-x64"
-          },
           "runtimes/win-x64/native/vcruntime140.dll": {
             "assetType": "native",
             "rid": "win-x64"
@@ -111,7 +107,7 @@
           }
         }
       },
-      "Emgu.runtime.windows.msvc.rt.x86/19.28.29336": {
+      "Emgu.runtime.windows.msvc.rt.x86/19.29.30138": {
         "type": "package",
         "runtimeTargets": {
           "runtimes/win-x86/native/concrt140.dll": {
@@ -130,6 +126,10 @@
             "assetType": "native",
             "rid": "win-x86"
           },
+          "runtimes/win-x86/native/msvcp140_atomic_wait.dll": {
+            "assetType": "native",
+            "rid": "win-x86"
+          },
           "runtimes/win-x86/native/msvcp140_codecvt_ids.dll": {
             "assetType": "native",
             "rid": "win-x86"
@@ -140,10 +140,10 @@
           }
         }
       },
-      "MetadataExtractor/2.4.3": {
+      "MetadataExtractor/2.7.1": {
         "type": "package",
         "dependencies": {
-          "XmpCore": "6.1.10"
+          "XmpCore": "6.1.10.1"
         },
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -156,15 +156,10 @@
           "lib/net45/MetadataExtractor.dll": {}
         }
       },
-      "System.Drawing.Common/5.0.0": {
+      "System.Drawing.Common/6.0.0": {
         "type": "package",
-        "frameworkAssemblies": [
-          "System",
-          "System.Drawing",
-          "mscorlib"
-        ],
         "compile": {
-          "ref/net461/System.Drawing.Common.dll": {}
+          "lib/net461/System.Drawing.Common.dll": {}
         },
         "runtime": {
           "lib/net461/System.Drawing.Common.dll": {}
@@ -188,13 +183,14 @@
         "frameworkAssemblies": [
           "System",
           "System.ComponentModel.Composition",
-          "System.Core"
+          "System.Core",
+          "mscorlib"
         ],
         "compile": {
-          "ref/net45/_._": {}
+          "ref/net462/System.Runtime.dll": {}
         },
         "runtime": {
-          "lib/net45/_._": {}
+          "lib/net462/System.Runtime.dll": {}
         }
       },
       "System.Runtime.InteropServices.RuntimeInformation/4.3.0": {
@@ -216,7 +212,7 @@
           }
         }
       },
-      "XmpCore/6.1.10": {
+      "XmpCore/6.1.10.1": {
         "type": "package",
         "frameworkAssemblies": [
           "System",
@@ -231,8 +227,8 @@
         }
       }
     },
-    ".NETFramework,Version=v4.6.1/win": {
-      "Emgu.CV/4.5.1.4349": {
+    ".NETFramework,Version=v4.8/win": {
+      "Emgu.CV/4.5.5.4823": {
         "type": "package",
         "dependencies": {
           "System.Drawing.Primitives": "4.3.0",
@@ -246,11 +242,11 @@
           "lib/netstandard2.0/Emgu.CV.Platform.NetStandard.dll": {}
         }
       },
-      "Emgu.CV.Bitmap/4.5.1.4349": {
+      "Emgu.CV.Bitmap/4.5.5.4823": {
         "type": "package",
         "dependencies": {
-          "Emgu.CV": "(4.5.1, 4.5.2)",
-          "System.Drawing.Common": "5.0.0"
+          "Emgu.CV": "4.5.5.4823",
+          "System.Drawing.Common": "6.0.0"
         },
         "compile": {
           "lib/netstandard2.0/Emgu.CV.Bitmap.dll": {}
@@ -259,18 +255,18 @@
           "lib/netstandard2.0/Emgu.CV.Bitmap.dll": {}
         }
       },
-      "Emgu.CV.runtime.windows/4.5.1.4349": {
+      "Emgu.CV.runtime.windows/4.5.5.4823": {
         "type": "package",
         "dependencies": {
-          "Emgu.CV": "(4.5.1, 4.5.2)",
-          "Emgu.runtime.windows.msvc.rt.x64": "[19.28.29336]",
-          "Emgu.runtime.windows.msvc.rt.x86": "[19.28.29336]"
+          "Emgu.CV": "4.5.5.4823",
+          "Emgu.runtime.windows.msvc.rt.x64": "19.29.30138",
+          "Emgu.runtime.windows.msvc.rt.x86": "19.29.30138"
         }
       },
-      "Emgu.CV.UI/4.5.1.4349": {
+      "Emgu.CV.UI/4.5.5.4823": {
         "type": "package",
         "dependencies": {
-          "Emgu.CV.Bitmap": "(4.5.1, 4.5.2)"
+          "Emgu.CV.Bitmap": "4.5.5.4823"
         },
         "frameworkAssemblies": [
           "System.Windows.Forms"
@@ -282,16 +278,16 @@
           "lib/net461/Emgu.CV.Platform.NetFramework.dll": {}
         }
       },
-      "Emgu.runtime.windows.msvc.rt.x64/19.28.29336": {
+      "Emgu.runtime.windows.msvc.rt.x64/19.29.30138": {
         "type": "package"
       },
-      "Emgu.runtime.windows.msvc.rt.x86/19.28.29336": {
+      "Emgu.runtime.windows.msvc.rt.x86/19.29.30138": {
         "type": "package"
       },
-      "MetadataExtractor/2.4.3": {
+      "MetadataExtractor/2.7.1": {
         "type": "package",
         "dependencies": {
-          "XmpCore": "6.1.10"
+          "XmpCore": "6.1.10.1"
         },
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -304,15 +300,10 @@
           "lib/net45/MetadataExtractor.dll": {}
         }
       },
-      "System.Drawing.Common/5.0.0": {
+      "System.Drawing.Common/6.0.0": {
         "type": "package",
-        "frameworkAssemblies": [
-          "System",
-          "System.Drawing",
-          "mscorlib"
-        ],
         "compile": {
-          "ref/net461/System.Drawing.Common.dll": {}
+          "lib/net461/System.Drawing.Common.dll": {}
         },
         "runtime": {
           "lib/net461/System.Drawing.Common.dll": {}
@@ -336,13 +327,14 @@
         "frameworkAssemblies": [
           "System",
           "System.ComponentModel.Composition",
-          "System.Core"
+          "System.Core",
+          "mscorlib"
         ],
         "compile": {
-          "ref/net45/_._": {}
+          "ref/net462/System.Runtime.dll": {}
         },
         "runtime": {
-          "lib/net45/_._": {}
+          "lib/net462/System.Runtime.dll": {}
         }
       },
       "System.Runtime.InteropServices.RuntimeInformation/4.3.0": {
@@ -354,7 +346,7 @@
           "runtimes/win/lib/net45/System.Runtime.InteropServices.RuntimeInformation.dll": {}
         }
       },
-      "XmpCore/6.1.10": {
+      "XmpCore/6.1.10.1": {
         "type": "package",
         "frameworkAssemblies": [
           "System",
@@ -369,8 +361,8 @@
         }
       }
     },
-    ".NETFramework,Version=v4.6.1/win-x64": {
-      "Emgu.CV/4.5.1.4349": {
+    ".NETFramework,Version=v4.8/win-x64": {
+      "Emgu.CV/4.5.5.4823": {
         "type": "package",
         "dependencies": {
           "System.Drawing.Primitives": "4.3.0",
@@ -384,11 +376,11 @@
           "lib/netstandard2.0/Emgu.CV.Platform.NetStandard.dll": {}
         }
       },
-      "Emgu.CV.Bitmap/4.5.1.4349": {
+      "Emgu.CV.Bitmap/4.5.5.4823": {
         "type": "package",
         "dependencies": {
-          "Emgu.CV": "(4.5.1, 4.5.2)",
-          "System.Drawing.Common": "5.0.0"
+          "Emgu.CV": "4.5.5.4823",
+          "System.Drawing.Common": "6.0.0"
         },
         "compile": {
           "lib/netstandard2.0/Emgu.CV.Bitmap.dll": {}
@@ -397,22 +389,22 @@
           "lib/netstandard2.0/Emgu.CV.Bitmap.dll": {}
         }
       },
-      "Emgu.CV.runtime.windows/4.5.1.4349": {
+      "Emgu.CV.runtime.windows/4.5.5.4823": {
         "type": "package",
         "dependencies": {
-          "Emgu.CV": "(4.5.1, 4.5.2)",
-          "Emgu.runtime.windows.msvc.rt.x64": "[19.28.29336]",
-          "Emgu.runtime.windows.msvc.rt.x86": "[19.28.29336]"
+          "Emgu.CV": "4.5.5.4823",
+          "Emgu.runtime.windows.msvc.rt.x64": "19.29.30138",
+          "Emgu.runtime.windows.msvc.rt.x86": "19.29.30138"
         },
         "native": {
           "runtimes/win-x64/native/cvextern.dll": {},
-          "runtimes/win-x64/native/opencv_videoio_ffmpeg451_64.dll": {}
+          "runtimes/win-x64/native/opencv_videoio_ffmpeg455_64.dll": {}
         }
       },
-      "Emgu.CV.UI/4.5.1.4349": {
+      "Emgu.CV.UI/4.5.5.4823": {
         "type": "package",
         "dependencies": {
-          "Emgu.CV.Bitmap": "(4.5.1, 4.5.2)"
+          "Emgu.CV.Bitmap": "4.5.5.4823"
         },
         "frameworkAssemblies": [
           "System.Windows.Forms"
@@ -424,7 +416,7 @@
           "lib/net461/Emgu.CV.Platform.NetFramework.dll": {}
         }
       },
-      "Emgu.runtime.windows.msvc.rt.x64/19.28.29336": {
+      "Emgu.runtime.windows.msvc.rt.x64/19.29.30138": {
         "type": "package",
         "native": {
           "runtimes/win-x64/native/concrt140.dll": {},
@@ -433,18 +425,17 @@
           "runtimes/win-x64/native/msvcp140_2.dll": {},
           "runtimes/win-x64/native/msvcp140_atomic_wait.dll": {},
           "runtimes/win-x64/native/msvcp140_codecvt_ids.dll": {},
-          "runtimes/win-x64/native/vccorlib140.dll": {},
           "runtimes/win-x64/native/vcruntime140.dll": {},
           "runtimes/win-x64/native/vcruntime140_1.dll": {}
         }
       },
-      "Emgu.runtime.windows.msvc.rt.x86/19.28.29336": {
+      "Emgu.runtime.windows.msvc.rt.x86/19.29.30138": {
         "type": "package"
       },
-      "MetadataExtractor/2.4.3": {
+      "MetadataExtractor/2.7.1": {
         "type": "package",
         "dependencies": {
-          "XmpCore": "6.1.10"
+          "XmpCore": "6.1.10.1"
         },
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -457,15 +448,10 @@
           "lib/net45/MetadataExtractor.dll": {}
         }
       },
-      "System.Drawing.Common/5.0.0": {
+      "System.Drawing.Common/6.0.0": {
         "type": "package",
-        "frameworkAssemblies": [
-          "System",
-          "System.Drawing",
-          "mscorlib"
-        ],
         "compile": {
-          "ref/net461/System.Drawing.Common.dll": {}
+          "lib/net461/System.Drawing.Common.dll": {}
         },
         "runtime": {
           "lib/net461/System.Drawing.Common.dll": {}
@@ -489,13 +475,14 @@
         "frameworkAssemblies": [
           "System",
           "System.ComponentModel.Composition",
-          "System.Core"
+          "System.Core",
+          "mscorlib"
         ],
         "compile": {
-          "ref/net45/_._": {}
+          "ref/net462/System.Runtime.dll": {}
         },
         "runtime": {
-          "lib/net45/_._": {}
+          "lib/net462/System.Runtime.dll": {}
         }
       },
       "System.Runtime.InteropServices.RuntimeInformation/4.3.0": {
@@ -507,7 +494,7 @@
           "lib/net45/System.Runtime.InteropServices.RuntimeInformation.dll": {}
         }
       },
-      "XmpCore/6.1.10": {
+      "XmpCore/6.1.10.1": {
         "type": "package",
         "frameworkAssemblies": [
           "System",
@@ -522,8 +509,8 @@
         }
       }
     },
-    ".NETFramework,Version=v4.6.1/win-x86": {
-      "Emgu.CV/4.5.1.4349": {
+    ".NETFramework,Version=v4.8/win-x86": {
+      "Emgu.CV/4.5.5.4823": {
         "type": "package",
         "dependencies": {
           "System.Drawing.Primitives": "4.3.0",
@@ -537,11 +524,11 @@
           "lib/netstandard2.0/Emgu.CV.Platform.NetStandard.dll": {}
         }
       },
-      "Emgu.CV.Bitmap/4.5.1.4349": {
+      "Emgu.CV.Bitmap/4.5.5.4823": {
         "type": "package",
         "dependencies": {
-          "Emgu.CV": "(4.5.1, 4.5.2)",
-          "System.Drawing.Common": "5.0.0"
+          "Emgu.CV": "4.5.5.4823",
+          "System.Drawing.Common": "6.0.0"
         },
         "compile": {
           "lib/netstandard2.0/Emgu.CV.Bitmap.dll": {}
@@ -550,22 +537,22 @@
           "lib/netstandard2.0/Emgu.CV.Bitmap.dll": {}
         }
       },
-      "Emgu.CV.runtime.windows/4.5.1.4349": {
+      "Emgu.CV.runtime.windows/4.5.5.4823": {
         "type": "package",
         "dependencies": {
-          "Emgu.CV": "(4.5.1, 4.5.2)",
-          "Emgu.runtime.windows.msvc.rt.x64": "[19.28.29336]",
-          "Emgu.runtime.windows.msvc.rt.x86": "[19.28.29336]"
+          "Emgu.CV": "4.5.5.4823",
+          "Emgu.runtime.windows.msvc.rt.x64": "19.29.30138",
+          "Emgu.runtime.windows.msvc.rt.x86": "19.29.30138"
         },
         "native": {
           "runtimes/win-x86/native/cvextern.dll": {},
-          "runtimes/win-x86/native/opencv_videoio_ffmpeg451.dll": {}
+          "runtimes/win-x86/native/opencv_videoio_ffmpeg455.dll": {}
         }
       },
-      "Emgu.CV.UI/4.5.1.4349": {
+      "Emgu.CV.UI/4.5.5.4823": {
         "type": "package",
         "dependencies": {
-          "Emgu.CV.Bitmap": "(4.5.1, 4.5.2)"
+          "Emgu.CV.Bitmap": "4.5.5.4823"
         },
         "frameworkAssemblies": [
           "System.Windows.Forms"
@@ -577,24 +564,25 @@
           "lib/net461/Emgu.CV.Platform.NetFramework.dll": {}
         }
       },
-      "Emgu.runtime.windows.msvc.rt.x64/19.28.29336": {
+      "Emgu.runtime.windows.msvc.rt.x64/19.29.30138": {
         "type": "package"
       },
-      "Emgu.runtime.windows.msvc.rt.x86/19.28.29336": {
+      "Emgu.runtime.windows.msvc.rt.x86/19.29.30138": {
         "type": "package",
         "native": {
           "runtimes/win-x86/native/concrt140.dll": {},
           "runtimes/win-x86/native/msvcp140.dll": {},
           "runtimes/win-x86/native/msvcp140_1.dll": {},
           "runtimes/win-x86/native/msvcp140_2.dll": {},
+          "runtimes/win-x86/native/msvcp140_atomic_wait.dll": {},
           "runtimes/win-x86/native/msvcp140_codecvt_ids.dll": {},
           "runtimes/win-x86/native/vcruntime140.dll": {}
         }
       },
-      "MetadataExtractor/2.4.3": {
+      "MetadataExtractor/2.7.1": {
         "type": "package",
         "dependencies": {
-          "XmpCore": "6.1.10"
+          "XmpCore": "6.1.10.1"
         },
         "frameworkAssemblies": [
           "Microsoft.CSharp",
@@ -607,15 +595,10 @@
           "lib/net45/MetadataExtractor.dll": {}
         }
       },
-      "System.Drawing.Common/5.0.0": {
+      "System.Drawing.Common/6.0.0": {
         "type": "package",
-        "frameworkAssemblies": [
-          "System",
-          "System.Drawing",
-          "mscorlib"
-        ],
         "compile": {
-          "ref/net461/System.Drawing.Common.dll": {}
+          "lib/net461/System.Drawing.Common.dll": {}
         },
         "runtime": {
           "lib/net461/System.Drawing.Common.dll": {}
@@ -639,13 +622,14 @@
         "frameworkAssemblies": [
           "System",
           "System.ComponentModel.Composition",
-          "System.Core"
+          "System.Core",
+          "mscorlib"
         ],
         "compile": {
-          "ref/net45/_._": {}
+          "ref/net462/System.Runtime.dll": {}
         },
         "runtime": {
-          "lib/net45/_._": {}
+          "lib/net462/System.Runtime.dll": {}
         }
       },
       "System.Runtime.InteropServices.RuntimeInformation/4.3.0": {
@@ -657,7 +641,7 @@
           "lib/net45/System.Runtime.InteropServices.RuntimeInformation.dll": {}
         }
       },
-      "XmpCore/6.1.10": {
+      "XmpCore/6.1.10.1": {
         "type": "package",
         "frameworkAssemblies": [
           "System",
@@ -674,15 +658,16 @@
     }
   },
   "libraries": {
-    "Emgu.CV/4.5.1.4349": {
-      "sha512": "HkjpYLxh9IVK311p/MXd54hRd2mF62LEO6vswYgiFdHdSQvNmnnZR3umQYP3lcuInqK2qp75w69m5Rz9lgA2bg==",
+    "Emgu.CV/4.5.5.4823": {
+      "sha512": "TmiMwyjh1/WZwnjNFF2PZmenI1cZqjtm6l9/8icXk7MMGwkd19DqX7s9igSgIgzqQqYXABW6ECOi56GbNTJHJA==",
       "type": "package",
-      "path": "emgu.cv/4.5.1.4349",
+      "path": "emgu.cv/4.5.5.4823",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.txt",
-        "emgu.cv.4.5.1.4349.nupkg.sha512",
+        "docs/README.md",
+        "emgu.cv.4.5.5.4823.nupkg.sha512",
         "emgu.cv.nuspec",
         "icon.png",
         "lib/netstandard2.0/Emgu.CV.Platform.NetStandard.dll",
@@ -691,47 +676,50 @@
         "lib/xamarinios10/Emgu.CV.Platform.NetStandard.xml"
       ]
     },
-    "Emgu.CV.Bitmap/4.5.1.4349": {
-      "sha512": "Dq9vno6Gb0FESrd8WexIOILgQyXLG56xWKJJsx/kCErGsMZxHAN5NysDerHg1G+39aphUiHDMPykkTLiYt4ANQ==",
+    "Emgu.CV.Bitmap/4.5.5.4823": {
+      "sha512": "HikxFAyO72MGD/sUySiFmzYQzdEOIx75X2c2j+s0r6kL2EniKtmU1wEM84WrSONeKjpD1QAxPA2iFPyP4bbw7g==",
       "type": "package",
-      "path": "emgu.cv.bitmap/4.5.1.4349",
+      "path": "emgu.cv.bitmap/4.5.5.4823",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.txt",
-        "emgu.cv.bitmap.4.5.1.4349.nupkg.sha512",
+        "docs/README.md",
+        "emgu.cv.bitmap.4.5.5.4823.nupkg.sha512",
         "emgu.cv.bitmap.nuspec",
         "icon.png",
         "lib/netstandard2.0/Emgu.CV.Bitmap.dll",
         "lib/netstandard2.0/Emgu.CV.Bitmap.xml"
       ]
     },
-    "Emgu.CV.runtime.windows/4.5.1.4349": {
-      "sha512": "IOhubaLFZUv9WZgdlCw9jmXODWhr8UWnoJqUkPmKp0q7fK+NmRdiAtR9yKyo4jtOrb5bytmpGQcTJ2weFP3DUg==",
+    "Emgu.CV.runtime.windows/4.5.5.4823": {
+      "sha512": "RfPAsh/zB9gDG8B8BqS1bgqNBn9d8croL0neZ5V1k1IWmEFtJvs+BBg6NF/YT+2eefB/w0kahFrv9P1PLBiy8g==",
       "type": "package",
-      "path": "emgu.cv.runtime.windows/4.5.1.4349",
+      "path": "emgu.cv.runtime.windows/4.5.5.4823",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.txt",
-        "emgu.cv.runtime.windows.4.5.1.4349.nupkg.sha512",
+        "docs/README.md",
+        "emgu.cv.runtime.windows.4.5.5.4823.nupkg.sha512",
         "emgu.cv.runtime.windows.nuspec",
         "icon.png",
         "runtimes/win-x64/native/cvextern.dll",
-        "runtimes/win-x64/native/opencv_videoio_ffmpeg451_64.dll",
+        "runtimes/win-x64/native/opencv_videoio_ffmpeg455_64.dll",
         "runtimes/win-x86/native/cvextern.dll",
-        "runtimes/win-x86/native/opencv_videoio_ffmpeg451.dll"
+        "runtimes/win-x86/native/opencv_videoio_ffmpeg455.dll"
       ]
     },
-    "Emgu.CV.UI/4.5.1.4349": {
-      "sha512": "ilxzvozPpm6KHjneZbLmdB7VL7JUn2gTR6H3WgJ3uZFdzrl6gaAC6GVyV2UNP/mtnr54bx5cc7eFfdTuenO3Qg==",
+    "Emgu.CV.UI/4.5.5.4823": {
+      "sha512": "SYHkniVX5PommuxVHBR397N9swV7566+OKEApCBQrMUweMFSuY1bk+0aCasAFDoasB5BOV/1lWT6X8eE+coMjg==",
       "type": "package",
-      "path": "emgu.cv.ui/4.5.1.4349",
+      "path": "emgu.cv.ui/4.5.5.4823",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.txt",
-        "emgu.cv.ui.4.5.1.4349.nupkg.sha512",
+        "docs/README.md",
+        "emgu.cv.ui.4.5.5.4823.nupkg.sha512",
         "emgu.cv.ui.nuspec",
         "icon.png",
         "lib/net461/Emgu.CV.Platform.NetFramework.dll",
@@ -740,15 +728,15 @@
         "lib/netcoreapp3.1/Emgu.CV.Platform.NetCore.xml"
       ]
     },
-    "Emgu.runtime.windows.msvc.rt.x64/19.28.29336": {
-      "sha512": "GCDS8BtMW+xTE7p6eTbZmJQAdrjMMC+ThGk7b1c+2J/OKwqwjsCkAr6IGVcyx0C3cpQkJX79XyEj8L48SZCGzA==",
+    "Emgu.runtime.windows.msvc.rt.x64/19.29.30138": {
+      "sha512": "9eAg+DP9V/i49HYVex9RnhVK7emK4DsdJVb/wzBiPtAA7cRiw2eb1R22hafg89F/EHFPffqYc7fb4B6PvoGXeQ==",
       "type": "package",
-      "path": "emgu.runtime.windows.msvc.rt.x64/19.28.29336",
+      "path": "emgu.runtime.windows.msvc.rt.x64/19.29.30138",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.txt",
-        "emgu.runtime.windows.msvc.rt.x64.19.28.29336.nupkg.sha512",
+        "emgu.runtime.windows.msvc.rt.x64.19.29.30138.nupkg.sha512",
         "emgu.runtime.windows.msvc.rt.x64.nuspec",
         "icon.png",
         "runtimes/win-x64/native/concrt140.dll",
@@ -757,34 +745,34 @@
         "runtimes/win-x64/native/msvcp140_2.dll",
         "runtimes/win-x64/native/msvcp140_atomic_wait.dll",
         "runtimes/win-x64/native/msvcp140_codecvt_ids.dll",
-        "runtimes/win-x64/native/vccorlib140.dll",
         "runtimes/win-x64/native/vcruntime140.dll",
         "runtimes/win-x64/native/vcruntime140_1.dll"
       ]
     },
-    "Emgu.runtime.windows.msvc.rt.x86/19.28.29336": {
-      "sha512": "GkZCA+RyK4S6PSWE8pVisud6v//p35T+bR49BIU+AMOrnAzCTGt6AxWx9nZd7mjaseWFuBg0svHf6BxDj6Uneg==",
+    "Emgu.runtime.windows.msvc.rt.x86/19.29.30138": {
+      "sha512": "/kkz66AROssDbzgXR5UyVnxvQ/bE22voerybxNdqFr1jJjCERet77rLqmvJI/dqCHDa4oTpwLY77B5MfPM48kg==",
       "type": "package",
-      "path": "emgu.runtime.windows.msvc.rt.x86/19.28.29336",
+      "path": "emgu.runtime.windows.msvc.rt.x86/19.29.30138",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.txt",
-        "emgu.runtime.windows.msvc.rt.x86.19.28.29336.nupkg.sha512",
+        "emgu.runtime.windows.msvc.rt.x86.19.29.30138.nupkg.sha512",
         "emgu.runtime.windows.msvc.rt.x86.nuspec",
         "icon.png",
         "runtimes/win-x86/native/concrt140.dll",
         "runtimes/win-x86/native/msvcp140.dll",
         "runtimes/win-x86/native/msvcp140_1.dll",
         "runtimes/win-x86/native/msvcp140_2.dll",
+        "runtimes/win-x86/native/msvcp140_atomic_wait.dll",
         "runtimes/win-x86/native/msvcp140_codecvt_ids.dll",
         "runtimes/win-x86/native/vcruntime140.dll"
       ]
     },
-    "MetadataExtractor/2.4.3": {
-      "sha512": "cqYmGVa6+toDGrX8JEPrkShF5lggwvL4ZZEpwdaq1lJr7/NhiEXm9/USJqJuldG1N8FRY4pLZp/Euf+qBEaqeg==",
+    "MetadataExtractor/2.7.1": {
+      "sha512": "31YgQxsTRi6QaDLQPjvTqecMYNM2Xy8G0fp/7BDo3Ky9Ukkd95+LVrsEBd1geY8B6COAsW40t2m5Da/7A0SXqA==",
       "type": "package",
-      "path": "metadataextractor/2.4.3",
+      "path": "metadataextractor/2.7.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -796,51 +784,48 @@
         "lib/netstandard1.3/MetadataExtractor.xml",
         "lib/netstandard2.0/MetadataExtractor.dll",
         "lib/netstandard2.0/MetadataExtractor.xml",
-        "metadata-extractor-logo-122.png",
-        "metadataextractor.2.4.3.nupkg.sha512",
+        "metadata-extractor-logo-128.png",
+        "metadataextractor.2.7.1.nupkg.sha512",
         "metadataextractor.nuspec"
       ]
     },
-    "System.Drawing.Common/5.0.0": {
-      "sha512": "SztFwAnpfKC8+sEKXAFxCBWhKQaEd97EiOL7oZJZP56zbqnLpmxACWA8aGseaUExciuEAUuR9dY8f7HkTRAdnw==",
+    "System.Drawing.Common/6.0.0": {
+      "sha512": "NfuoKUiP2nUWwKZN6twGqXioIe1zVD0RIj2t976A+czLHr2nY454RwwXs6JU9Htc6mwqL6Dn/nEL3dpVf2jOhg==",
       "type": "package",
-      "path": "system.drawing.common/5.0.0",
+      "path": "system.drawing.common/6.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/netcoreapp2.0/System.Drawing.Common.targets",
+        "buildTransitive/netcoreapp3.1/_._",
         "lib/MonoAndroid10/_._",
         "lib/MonoTouch10/_._",
         "lib/net461/System.Drawing.Common.dll",
-        "lib/netcoreapp3.0/System.Drawing.Common.dll",
-        "lib/netcoreapp3.0/System.Drawing.Common.xml",
+        "lib/net461/System.Drawing.Common.xml",
+        "lib/net6.0/System.Drawing.Common.dll",
+        "lib/net6.0/System.Drawing.Common.xml",
+        "lib/netcoreapp3.1/System.Drawing.Common.dll",
+        "lib/netcoreapp3.1/System.Drawing.Common.xml",
         "lib/netstandard2.0/System.Drawing.Common.dll",
+        "lib/netstandard2.0/System.Drawing.Common.xml",
         "lib/xamarinios10/_._",
         "lib/xamarinmac20/_._",
         "lib/xamarintvos10/_._",
         "lib/xamarinwatchos10/_._",
-        "ref/MonoAndroid10/_._",
-        "ref/MonoTouch10/_._",
-        "ref/net461/System.Drawing.Common.dll",
-        "ref/netcoreapp3.0/System.Drawing.Common.dll",
-        "ref/netcoreapp3.0/System.Drawing.Common.xml",
-        "ref/netstandard2.0/System.Drawing.Common.dll",
-        "ref/xamarinios10/_._",
-        "ref/xamarinmac20/_._",
-        "ref/xamarintvos10/_._",
-        "ref/xamarinwatchos10/_._",
-        "runtimes/unix/lib/netcoreapp2.0/System.Drawing.Common.dll",
-        "runtimes/unix/lib/netcoreapp3.0/System.Drawing.Common.dll",
-        "runtimes/unix/lib/netcoreapp3.0/System.Drawing.Common.xml",
-        "runtimes/win/lib/netcoreapp2.0/System.Drawing.Common.dll",
-        "runtimes/win/lib/netcoreapp3.0/System.Drawing.Common.dll",
-        "runtimes/win/lib/netcoreapp3.0/System.Drawing.Common.xml",
-        "system.drawing.common.5.0.0.nupkg.sha512",
+        "runtimes/unix/lib/net6.0/System.Drawing.Common.dll",
+        "runtimes/unix/lib/net6.0/System.Drawing.Common.xml",
+        "runtimes/unix/lib/netcoreapp3.1/System.Drawing.Common.dll",
+        "runtimes/unix/lib/netcoreapp3.1/System.Drawing.Common.xml",
+        "runtimes/win/lib/net6.0/System.Drawing.Common.dll",
+        "runtimes/win/lib/net6.0/System.Drawing.Common.xml",
+        "runtimes/win/lib/netcoreapp3.1/System.Drawing.Common.dll",
+        "runtimes/win/lib/netcoreapp3.1/System.Drawing.Common.xml",
+        "system.drawing.common.6.0.0.nupkg.sha512",
         "system.drawing.common.nuspec",
-        "useSharedDesignerContext.txt",
-        "version.txt"
+        "useSharedDesignerContext.txt"
       ]
     },
     "System.Drawing.Primitives/4.3.0": {
@@ -999,10 +984,10 @@
         "system.runtime.interopservices.runtimeinformation.nuspec"
       ]
     },
-    "XmpCore/6.1.10": {
-      "sha512": "ZAcSNzJbvAM8lTVeRFvvAQ3CS/+FDb/IrzvrSjLANIXruw3unul/9yQekS55/1v7jsx5ALJby0iT39kHQv5LSg==",
+    "XmpCore/6.1.10.1": {
+      "sha512": "/Tp2/e39e7z8hLtS4TXt0FNNZHbf5yNFfHS0/59soXlgOzZlyRZivvzWpvujyaWkTWWgecp/1nHxkuc5vntn7A==",
       "type": "package",
-      "path": "xmpcore/6.1.10",
+      "path": "xmpcore/6.1.10.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1012,17 +997,17 @@
         "lib/netstandard1.0/XmpCore.xml",
         "lib/netstandard2.0/XmpCore.dll",
         "lib/netstandard2.0/XmpCore.xml",
-        "xmpcore.6.1.10.nupkg.sha512",
+        "xmpcore.6.1.10.1.nupkg.sha512",
         "xmpcore.nuspec"
       ]
     }
   },
   "projectFileDependencyGroups": {
-    ".NETFramework,Version=v4.6.1": [
-      "Emgu.CV >= 4.5.1.4349",
-      "Emgu.CV.UI >= 4.5.1.4349",
-      "Emgu.CV.runtime.windows >= 4.5.1.4349",
-      "MetadataExtractor >= 2.4.3"
+    ".NETFramework,Version=v4.8": [
+      "Emgu.CV >= 4.5.5.4823",
+      "Emgu.CV.UI >= 4.5.5.4823",
+      "Emgu.CV.runtime.windows >= 4.5.5.4823",
+      "MetadataExtractor >= 2.7.1"
     ]
   },
   "packageFolders": {
@@ -1031,11 +1016,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\DesktopFolders\\Uni\\WS2020\\Bildbasierte Computergrafik\\Project\\bcg-coins\\bcg-coins\\bcg-coins.csproj",
+      "projectUniqueName": "C:\\Users\\Menta\\bcg-coins\\bcg-coins\\bcg-coins.csproj",
       "projectName": "bcg-coins",
-      "projectPath": "D:\\DesktopFolders\\Uni\\WS2020\\Bildbasierte Computergrafik\\Project\\bcg-coins\\bcg-coins\\bcg-coins.csproj",
+      "projectPath": "C:\\Users\\Menta\\bcg-coins\\bcg-coins\\bcg-coins.csproj",
       "packagesPath": "C:\\Users\\Menta\\.nuget\\packages\\",
-      "outputPath": "D:\\DesktopFolders\\Uni\\WS2020\\Bildbasierte Computergrafik\\Project\\bcg-coins\\bcg-coins\\obj\\",
+      "outputPath": "C:\\Users\\Menta\\bcg-coins\\bcg-coins\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "configFilePaths": [
@@ -1043,36 +1028,36 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net461"
+        "net48"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net461": {
+        "net48": {
           "projectReferences": {}
         }
       }
     },
     "frameworks": {
-      "net461": {
+      "net48": {
         "dependencies": {
           "Emgu.CV": {
             "target": "Package",
-            "version": "[4.5.1.4349, )"
+            "version": "[4.5.5.4823, )"
           },
           "Emgu.CV.UI": {
             "target": "Package",
-            "version": "[4.5.1.4349, )"
+            "version": "[4.5.5.4823, )"
           },
           "Emgu.CV.runtime.windows": {
             "target": "Package",
-            "version": "[4.5.1.4349, )"
+            "version": "[4.5.5.4823, )"
           },
           "MetadataExtractor": {
             "target": "Package",
-            "version": "[2.4.3, )"
+            "version": "[2.7.1, )"
           }
         }
       }
@@ -1088,20 +1073,5 @@
         "#import": []
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1602",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "\"Emgu.CV.UI 4.5.1.4349\" bietet keine einschließliche Untergrenze für die Abhängigkeit \"Emgu.CV.Bitmap (> 4.5.1 && < 4.5.2)\". Die ungefähre höchste Übereinstimmung von \"Emgu.CV.Bitmap 4.5.1.4349\" wurde aufgelöst.",
-      "libraryId": "Emgu.CV.Bitmap",
-      "targetGraphs": [
-        ".NETFramework,Version=v4.6.1",
-        ".NETFramework,Version=v4.6.1/win",
-        ".NETFramework,Version=v4.6.1/win-x64",
-        ".NETFramework,Version=v4.6.1/win-x86"
-      ]
-    }
-  ]
+  }
 }
