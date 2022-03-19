@@ -42,7 +42,7 @@
             this.trackBar1.Size = new System.Drawing.Size(360, 45);
             this.trackBar1.TabIndex = 0;
             this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
-            this.trackBar1.Value = 100;
+            this.trackBar1.Value = 150;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
             // applyButton
@@ -62,9 +62,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(16, 89);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(113, 13);
+            this.label1.Size = new System.Drawing.Size(113, 52);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Chosen threshold: 100";
+            this.label1.Text = "Chosen threshold: 150\r\n\r\n\r\n\r\n";
             // 
             // label2
             // 

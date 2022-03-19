@@ -153,22 +153,22 @@ namespace bcg_coins
             _coinValueList = new int[16];
 
             //Paths to Ground Truths
-            string front_e2 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Polar\\2e_V.tiff";            
-            string back_e2 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Polar\\2e_R.tiff";
-            string front_e1 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Polar\\1e_V.tiff";
-            string back_e1 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Polar\\1e_R.tiff";
-            string front_c50 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Polar\\50c_V.tiff";
-            string back_c50 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Polar\\50c_R.tiff";
-            string front_c20 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Polar\\20c_V.tiff";
-            string back_c20 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Polar\\20c_R.tiff";
-            string front_c10 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Polar\\10c_V.tiff";
-            string back_c10 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Polar\\10c_R.tiff";
-            string front_c5 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Polar\\5c_V.tiff";
-            string back_c5 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Polar\\5c_R.tiff";
-            string front_c2 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Polar\\2c_V.tiff";
-            string back_c2 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Polar\\2c_R.tiff";
-            string front_c1 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Polar\\1c_V.tiff";
-            string back_c1 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Polar\\1c_R.tiff";
+            string front_e2 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Log\\2e_V.tif";            
+            string back_e2 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Log\\2e_R.tif";
+            string front_e1 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Log\\1e_V.tif";
+            string back_e1 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Log\\1e_R.tif";
+            string front_c50 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Log\\50c_V.tif";
+            string back_c50 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Log\\50c_R.tif";
+            string front_c20 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Log\\20c_V.tif";
+            string back_c20 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Log\\20c_R.tif";
+            string front_c10 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Log\\10c_V.tif";
+            string back_c10 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Log\\10c_R.tif";
+            string front_c5 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Log\\5c_V.tif";
+            string back_c5 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Log\\5c_R.tif";
+            string front_c2 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Log\\2c_V.tif";
+            string back_c2 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Log\\2c_R.tif";
+            string front_c1 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Log\\1c_V.tif";
+            string back_c1 = "C:\\Users\\Menta\\Desktop\\BCG\\GroundTruths\\Log\\1c_R.tif";
 
             Mat coin_200_front = CvInvoke.Imread(front_e2);
             _coinReferenceList[0] = (coin_200_front);
@@ -378,25 +378,30 @@ namespace bcg_coins
                     //TODO Find way to Wrap Image Around, Moving it on Y
                     */
 
-                    CvInvoke.LogPolar(_roiImage, roiDst, new Point(_roiImage.Cols / 2, _roiImage.Rows / 2), _roiImage.Cols / Math.Log((_roiImage.Cols / 2) * 0.7f), Inter.Cubic);
+                    CvInvoke.LinearPolar(_roiImage, roiDst, new Point(_roiImage.Cols / 2, _roiImage.Rows / 2), (_roiImage.Cols / 2) , Inter.Cubic);
+
+                    //CvInvoke.LogPolar(_roiImage, roiDst, new Point(_roiImage.Cols / 2, _roiImage.Rows / 2), _roiImage.Cols / Math.Log((_roiImage.Cols / 2) * 0.7f), Inter.Cubic);
                     //(currentCoin.Cols / 2 + currentCoin.Rows / 2) / 4.85f
                     //currentCoin.Cols / Math.Log((currentCoin.Cols / 2 + currentCoin.Rows / 2))
 
                   
                     float score = 0;
                     float curScore = 0;
-                    int coinIndex = -1;
-                    int stepsize = 10;
+                    int coinIndex = 0;
+                    int stepsize = 5;
                     for (int i = 0; i < 16; i++) {
                         for (int j = 0; j < roiDst.Rows / stepsize; j++) {
 
                             Mat result = new Mat();
-
+                            Mat curCoinRef = new Mat();   
                             if (_coinReferenceList[i].Rows < roiDst.Rows || _coinReferenceList[i].Cols < roiDst.Cols) {
                                 CvInvoke.Resize(roiDst, roiDst, _coinReferenceList[i].Size);
+                                curCoinRef = _coinReferenceList[i];
+                            } else {
+                                CvInvoke.Resize(_coinReferenceList[i], curCoinRef, roiDst.Size);
                             }
                             
-                            CvInvoke.MatchTemplate(roiDst, _coinReferenceList[i], result, TemplateMatchingType.CcorrNormed);
+                            CvInvoke.MatchTemplate(roiDst, curCoinRef, result, TemplateMatchingType.CcorrNormed);
                             
                             curScore = MatExtension.GetValue(result, 0, 0);
                             if (curScore > score) {
@@ -420,15 +425,17 @@ namespace bcg_coins
                     }*/
 
                     //MessageBox.Show("index: " + coinIndex + " - curScore: " + curScore + " - score: " + score);
-                    CvInvoke.PutText(_roiImage, _coinValueList[coinIndex] + "Cent", new Point(roiDst.Cols / 2, roiDst.Rows / 2), FontFace.HersheySimplex, 0.5f, new MCvScalar(0, 255, 0), 2);
-                    
+                    CvInvoke.PutText(roiDst, _coinValueList[coinIndex] + "Cent", new Point(roiDst.Cols / 2, roiDst.Rows / 2), FontFace.HersheySimplex, 0.5f, new MCvScalar(0, 255, 0), 2);
+
+
+
                     ImageBox imgb = new ImageBox();
                     imgb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
                     imgb.MinimumSize = new System.Drawing.Size(200, 200);
                     imgb.Size = new System.Drawing.Size(35, 20);
                     imgb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
                     imgb.TabStop = false;
-                    imgb.Image = _roiImage;
+                    imgb.Image = roiDst;
                     flowLayoutPanel1.Controls.Add(imgb);
                     _currentCoinImageBoxes.Add(imgb);
                     
@@ -437,6 +444,10 @@ namespace bcg_coins
         }
 
         private void groupBox6_Enter(object sender, EventArgs e) {
+
+        }
+
+        private void binaryImageBox_Click(object sender, EventArgs e) {
 
         }
     }

@@ -36,6 +36,8 @@
             this.binaryImageBox = new Emgu.CV.UI.ImageBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.contoursImageBox = new Emgu.CV.UI.ImageBox();
+            this.debugTextBox = new System.Windows.Forms.GroupBox();
+            this.textBoxDebug = new System.Windows.Forms.TextBox();
             this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
             this.menuFile = new System.Windows.Forms.MenuItem();
             this.menuOpen = new System.Windows.Forms.MenuItem();
@@ -51,8 +53,6 @@
             this.btnFillHoles = new System.Windows.Forms.Button();
             this.btnFindContours = new System.Windows.Forms.Button();
             this.findCoins = new System.Windows.Forms.Button();
-            this.debugTextBox = new System.Windows.Forms.GroupBox();
-            this.textBoxDebug = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.baseImageBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.histogramBox)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
@@ -180,6 +180,7 @@
             this.binaryImageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.binaryImageBox.TabIndex = 2;
             this.binaryImageBox.TabStop = false;
+            this.binaryImageBox.Click += new System.EventHandler(this.binaryImageBox_Click);
             // 
             // groupBox5
             // 
@@ -203,6 +204,29 @@
             this.contoursImageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.contoursImageBox.TabIndex = 2;
             this.contoursImageBox.TabStop = false;
+            // 
+            // debugTextBox
+            // 
+            this.debugTextBox.Controls.Add(this.textBoxDebug);
+            this.debugTextBox.Location = new System.Drawing.Point(727, 229);
+            this.debugTextBox.Name = "debugTextBox";
+            this.debugTextBox.Size = new System.Drawing.Size(356, 220);
+            this.debugTextBox.TabIndex = 9;
+            this.debugTextBox.TabStop = false;
+            this.debugTextBox.Text = "Debug";
+            this.debugTextBox.Enter += new System.EventHandler(this.groupBox6_Enter);
+            // 
+            // textBoxDebug
+            // 
+            this.textBoxDebug.AcceptsReturn = true;
+            this.textBoxDebug.Dock = System.Windows.Forms.DockStyle.Top;
+            this.textBoxDebug.Location = new System.Drawing.Point(3, 16);
+            this.textBoxDebug.Multiline = true;
+            this.textBoxDebug.Name = "textBoxDebug";
+            this.textBoxDebug.ReadOnly = true;
+            this.textBoxDebug.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxDebug.Size = new System.Drawing.Size(350, 200);
+            this.textBoxDebug.TabIndex = 3;
             // 
             // mainMenu1
             // 
@@ -317,29 +341,6 @@
             this.findCoins.Text = "Find Coins";
             this.findCoins.UseVisualStyleBackColor = true;
             this.findCoins.Click += new System.EventHandler(this.findCoins_Click);
-            // 
-            // debugTextBox
-            // 
-            this.debugTextBox.Controls.Add(this.textBoxDebug);
-            this.debugTextBox.Location = new System.Drawing.Point(727, 229);
-            this.debugTextBox.Name = "debugTextBox";
-            this.debugTextBox.Size = new System.Drawing.Size(356, 220);
-            this.debugTextBox.TabIndex = 9;
-            this.debugTextBox.TabStop = false;
-            this.debugTextBox.Text = "Debug";
-            this.debugTextBox.Enter += new System.EventHandler(this.groupBox6_Enter);
-            // 
-            // textBoxDebug
-            // 
-            this.textBoxDebug.AcceptsReturn = true;
-            this.textBoxDebug.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textBoxDebug.Location = new System.Drawing.Point(3, 16);
-            this.textBoxDebug.Multiline = true;
-            this.textBoxDebug.Name = "textBoxDebug";
-            this.textBoxDebug.ReadOnly = true;
-            this.textBoxDebug.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxDebug.Size = new System.Drawing.Size(350, 200);
-            this.textBoxDebug.TabIndex = 3;
             // 
             // MainWindow
             // 
