@@ -1,4 +1,4 @@
-# Project Bildbasierte Computer Grafik :camera:: 'Coins'
+# Projekt Bildbasierte Computer Grafik :camera:: 'Coins'
 ### Ausgearbeitet von: David Alexander Kring
 ### Betreuender Professor: Andreas Karge
 
