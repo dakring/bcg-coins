@@ -14,6 +14,7 @@ Links für einfache Navigation:
 
 Um den Code auf einer neuen Maschine ausführen zu können müssen die folgenden Pfade im Code von _MainWindow.cs_ angepasst werden:
 > Zeile 156 - 171 - Die Pfade zu den Ground Truth-Dateien für jede Münze (Vorder- und Rückseite) müssen angegeben werden. 
+> 
 > Zeile 290 - eine Kreisreferenz wird benötigt für die Konturensuche.
 
 Diese Dateien befinden sich alle im Ordner für die Datensets, die Kreisreferenz unter dem alten Datensatz.
